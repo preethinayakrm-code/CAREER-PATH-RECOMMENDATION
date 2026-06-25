@@ -64,13 +64,13 @@ def index():
 def predict():
     data = request.json
     features = [
-        float(data['programming']),
-        float(data['communication']),
-        float(data['creativity']),
-        float(data['problem_solving']),
-        float(data['ui_ux_interest']),
-        float(data['ai_interest']),
-        float(data['business_interest']),
+    float(data['Programming_Score']),
+    float(data['Communication_Score']),
+    float(data['Creativity_Score']),
+    float(data['Problem_Solving_Score']),
+    float(data['UI_UX_Interest']),
+    float(data['AI_Interest']),
+    float(data['Business_Interest']),
     ]
     arr = np.array([features])
     probs = model.predict_proba(arr)[0]
@@ -88,7 +88,10 @@ def predict():
             "salary": info.get("salary", ""),
             "growth": info.get("growth", "")
         })
-    return jsonify({"results": results})
+    return jsonify({
+    "success": True,
+    "results": results
+})
 
 if __name__ == '__main__':
     app.run(debug=True)
